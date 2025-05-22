@@ -11,6 +11,6 @@ router.get(`/listarPresidentes`, Presidente.listarPresidentes)
 //insertar
 router.post(`/insertarPresidente`, Presidente.insertarPresidente)
 //actualizar por id
-router.put(`/actualizarPresidenteId`, Presidente.actualizarPresidenteId)
+router.put(`/actualizarPresidenteId/:id`, Presidente.actualizarPresidenteId)
 //eliminar
-router.delete(`eliminarPresidenteId`, Presidente.eliminarPresidenteId)
+router.delete(`/eliminarPresidenteId/:id`, Presidente.eliminarPresidenteId)
