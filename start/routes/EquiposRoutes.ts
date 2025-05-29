@@ -7,6 +7,7 @@ const equipo = new EquiposController();
 
 //listar
 router.get(`/listarequipo`, equipo.listarequipo)
+router.get(`/listarequipo/SP`, equipo.listarequipoSinPresidente)
 //insertar
 router.post(`/insertarEquipo`, equipo.insertarEquipo)
 //actualizar por id

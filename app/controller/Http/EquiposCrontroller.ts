@@ -8,6 +8,15 @@ class EquiposController {
         return response.json({ ms: result.rows })
     }
 
+    async listarequipoSinPresidente({ response }: { response: any }) {
+        const result = await PgDatabase.query(`SELECT e.codigo, e.nombre, e.anio_fundacion
+                FROM public.equipo e
+                LEFT JOIN public.presidente p ON e.codigo = p.codigo_equipo
+                WHERE p.codigo_equipo IS NULL;
+`)
+        return response.json({ ms: result.rows })
+    }
+
     //insertar
     async insertarEquipo({ request, response }: { request: any; response: any }) {
         const { nombre, anio_fundacion } = request.body()

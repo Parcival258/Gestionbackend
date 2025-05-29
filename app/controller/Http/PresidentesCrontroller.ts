@@ -11,11 +11,16 @@ class PresidentesController {
     //insertar
     async insertarPresidente({ request, response }: { request: any; response: any }) {
         const { dni, nombre, codigo_equipo } = request.body()
-        const result = await PgDatabase.query(
-            `INSERT INTO presidente (dni, nombre, codigo_equipo) VALUES ($1,$2,$3)`,
-            [dni, nombre, codigo_equipo]
-        )
-        return response.json({ ms: result.rows })
+        try{
+
+            const result = await PgDatabase.query(
+                `INSERT INTO presidente (dni, nombre, codigo_equipo) VALUES ($1,$2,$3)`,
+                [dni, nombre, codigo_equipo]
+            )
+            return response.json({ ms: result.rows })
+        }catch (e){
+            return response.json({ ms: 'error' })
+        }
     }
     //actualizar por id
     async actualizarPresidenteId({ params, request, response }: { params: any, request: any, response: any }) {
