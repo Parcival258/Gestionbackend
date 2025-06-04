@@ -7,6 +7,9 @@ const equipo = new EquiposController();
 
 //listar
 router.get(`/listarequipo`, equipo.listarequipo)
+//listar equipo por id
+router.get(`listarequipoid/:codigo`, equipo.listarequipoid)
+//listar equipo sin precidente
 router.get(`/listarequipo/SP`, equipo.listarequipoSinPresidente)
 //insertar
 router.post(`/insertarEquipo`, equipo.insertarEquipo)
