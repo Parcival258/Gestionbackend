@@ -51,6 +51,12 @@ class PresidentesController {
         return response.json({ms: `presidente eliminado`})
     }
 
+    //listar
+    async obtenerPresidentesById({ params, response }: { params: any, response: any }) {
+        const id = params.id
+        const result = await PgDatabase.query(`SELECT * FROM presidente WHERE id = $1`, [id]);
+        return response.json({ ms: result.rows })
+    }
 
 
 }
