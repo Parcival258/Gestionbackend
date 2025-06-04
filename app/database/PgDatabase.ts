@@ -7,7 +7,7 @@ const PgDatabase = new Client({
   port: 5433,
   user: `postgres`,
   password: process.env.PASSWORD_DB,
-  database: `Gestion`,
+  database: process.env.DB_DATABASE,
 })
 PgDatabase.connect()
 
