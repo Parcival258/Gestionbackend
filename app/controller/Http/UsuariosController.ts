@@ -40,7 +40,10 @@ class UsuariosController {
   //para la identificacón en el app
   async userEmail({ request, response }: { request: any; response: any }) {
     const { email } = request.body()
-    const res = await PgDatabase.query(`SELECT * FROM usuarios WHERE email = $1`, [email])
+    const res = await PgDatabase.query(
+      `SELECT nombre,email,telefono,direccion,created_at FROM usuarios WHERE email = $1`,
+      [email]
+    )
     if (res.rowCount === 0) {
       return response.json({ ms: false })
     }
