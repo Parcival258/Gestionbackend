@@ -4,11 +4,14 @@ import PgDatabase from '../../database/PgDatabase.js'
 class UsuariosController {
   //add usuarios
   async register({ request, response }: { request: any; response: any }) {
-    const { email, password } = request.body()
+    const { email, password, nombre, telefono, direccion } = request.body()
     const newpass = await hash.make(password)
-    const rest = await PgDatabase.query(`INSERT INTO usuarios (email,password) VALUES($1,$2)`, [
+    const rest = await PgDatabase.query(`INSERT INTO usuarios (email,password, nombre, telefono, direccion) VALUES($1,$2,$3,$4,$5)`, [
       email,
       newpass,
+      nombre,
+      telefono,
+      direccion
     ])
     return response.json({ ms: `agregado` })
   }
