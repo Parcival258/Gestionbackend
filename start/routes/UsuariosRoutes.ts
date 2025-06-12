@@ -11,3 +11,5 @@ router.post(`/login`, usuarios.login)
 router.post(`/register`, usuarios.register)
 //User by Id
 router.post('/userByEmail', usuarios.userByEmail)
+//identificar por mail
+router.post(`/email`, usuarios.userEmail)

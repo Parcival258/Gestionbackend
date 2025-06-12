@@ -6,13 +6,10 @@ class UsuariosController {
   async register({ request, response }: { request: any; response: any }) {
     const { email, password, nombre, telefono, direccion } = request.body()
     const newpass = await hash.make(password)
-    const rest = await PgDatabase.query(`INSERT INTO usuarios (email,password, nombre, telefono, direccion) VALUES($1,$2,$3,$4,$5)`, [
-      email,
-      newpass,
-      nombre,
-      telefono,
-      direccion
-    ])
+    const rest = await PgDatabase.query(
+      `INSERT INTO usuarios (email,password, nombre, telefono, direccion) VALUES($1,$2,$3,$4,$5)`,
+      [email, newpass, nombre, telefono, direccion]
+    )
     return response.json({ ms: `agregado` })
   }
 
@@ -31,13 +28,23 @@ class UsuariosController {
   }
 
   //User by Email:
-  async userByEmail({request, response}: {request: any, response: any}){
-    const { email } = request.body();
-    const res = await PgDatabase.query(`SELECT * FROM usuarios WHERE email = $1`, [email]);
-    if(res.rowCount === 0){
-      return response.json({ms: false})
+  async userByEmail({ request, response }: { request: any; response: any }) {
+    const { email } = request.body()
+    const res = await PgDatabase.query(`SELECT * FROM usuarios WHERE email = $1`, [email])
+    if (res.rowCount === 0) {
+      return response.json({ ms: false })
     }
-    return response.json({ms: true})
+    return response.json({ ms: true })
+  }
+
+  //para la identificacón en el app
+  async userEmail({ request, response }: { request: any; response: any }) {
+    const { email } = request.body()
+    const res = await PgDatabase.query(`SELECT * FROM usuarios WHERE email = $1`, [email])
+    if (res.rowCount === 0) {
+      return response.json({ ms: false })
+    }
+    return response.json({ ms: res.rows })
   }
 }
 
