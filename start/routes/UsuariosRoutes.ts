@@ -8,4 +8,6 @@ const usuarios = new UsuariosController()
 //login
 router.post(`/login`, usuarios.login)
 //register
-router.post(`/register`,usuarios.register)
+router.post(`/register`, usuarios.register)
+//User by Id
+router.post('/userByEmail', usuarios.userByEmail)

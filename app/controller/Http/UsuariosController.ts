@@ -26,6 +26,16 @@ class UsuariosController {
     }
     return response.json({ ms: true })
   }
+
+  //User by Email:
+  async userByEmail({request, response}: {request: any, response: any}){
+    const { email } = request.body();
+    const res = await PgDatabase.query(`SELECT * FROM usuarios WHERE email = $1`, [email]);
+    if(res.rowCount === 0){
+      return response.json({ms: false})
+    }
+    return response.json({ms: true})
+  }
 }
 
 export default UsuariosController
